@@ -93,3 +93,51 @@ File: `Lazega_class_cv.R`
 Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
 
 Depends on: `class_functions.cpp`, `r_functions.R`, `class_functions.R`
+
+#### Distance model: Model fitting, posterior predictive checks
+
+File: `Lazega_distance.R`
+
+Required libraries: `Rcpp`, `igraph`, `sand`
+
+Depends on: `distance_functions.cpp`, `r_functions.R`, `distance_functions.R`
+
+#### Distance model: Model fit (WAIC)
+
+File: `Lazega_distance_waic.R`
+
+Required libraries: `Rcpp`, `igraph`, `sand`
+
+Depends on: `distance_functions.cpp`, `r_functions.R`, `distance_functions.R`
+
+#### Distance model: Predictive accuracy (CV)
+
+File: `Lazega_distance_cv.R`
+
+Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
+
+Depends on: `distance_functions.cpp`, `r_functions.R`, `distance_functions.R`
+
+#### Eigen model: Model fitting, posterior predictive checks
+
+File: `Lazega_eigen.R`
+
+Required libraries: `Rcpp`, `igraph`, `sand`
+
+Depends on: `eigen_functions.cpp`, `r_functions.R`, `eigen_functions.R`
+
+#### Eigen model: Model fit (WAIC)
+
+File: `Lazega_eigen_waic.R`
+
+Required libraries: `Rcpp`, `igraph`, `sand`
+
+Depends on: `eigen_functions.cpp`, `r_functions.R`, `eigen_functions.R`
+
+#### Eigen model: Predictive accuracy (CV)
+
+File: `Lazega_eigen_cv.R`
+
+Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
+
+Depends on: `eigen_functions.cpp`, `r_functions.R`, `eigen_functions.R`
