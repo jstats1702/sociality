@@ -68,10 +68,10 @@ Content:
 - Model fitting using MCMC
 - Convergence diagnostics
 - Model fitting using VI
-- Inference on mu
-- Inference on sigma^2
-- Inference on tau^2
-- Inference on mu, sigma^2 and tau^2
+- Inference on $\mu$
+- Inference on $\sigma^2$
+- Inference on $\tau^2$
+- Inference on $\mu$, $\sigma^2$ and $\tau^2$
 - Inference on delta using MCMC
 - Inference on delta using VI
 - Clustering sociality effects using MCMC
@@ -82,26 +82,4 @@ Content:
 - Posterior predictive checks
 - Test statistics visualization
 - Degree predictive check
-
-
-
-## Distance model: MCMC algorithm
-
-
-
-## Class model: MCMC algorithm
-
-
-
-## Eigen model: MCMC algorithm
-
-
-
-## Lazega data analysis
-
-
-## Model comparison using other datasets
-
-
-## Simulation study
 
