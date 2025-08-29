@@ -10,7 +10,15 @@ This repository contains all the necessary code to reproduce the results present
 
 - To ensure the software runs properly, the user should place all files in a single folder and update the file path specified at the beginning of each script.
 
-- The user must have the following libraries installed in the global environment to avoid any potential runtime conflicts: Rcpp, RcppArmadillo, igraph, sand, coda, ggplot2, reshape2, gridExtra, cluster, mclust.
+- The user must have the following libraries installed in the global environment to avoid any potential runtime conflicts.
+
+## Section 3.2: Prior elicitation
+
+### Prior simulation for the sociality model
+
+- File: prior simulation.R
+
+- Required libraries: ggplot2, dplyr
 
 ## Sociality model: MCMC algorithm
 
