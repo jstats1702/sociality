@@ -86,3 +86,10 @@ Required libraries: `Rcpp`, `igraph`, `sand`
 
 Depends on: `class_functions.cpp`, `r_functions.R`, `class_functions.R`
 
+#### Class model: Predictive accuracy (CV)
+
+File: `Lazega_class_cv.R`
+
+Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
+
+Depends on: `class_functions.cpp`, `r_functions.R`, `class_functions.R`
