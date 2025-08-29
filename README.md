@@ -12,4 +12,25 @@ This repository contains all the necessary code to reproduce the results present
 
 - The user must have the following libraries installed in the global environment to avoid any potential runtime conflicts: Rcpp, RcppArmadillo, igraph, sand, coda, ggplot2, reshape2, gridExtra, cluster, mclust.
 
+## Sociality model: MCMC algorithm
+
+
+
+## Sociality model: VI algorithm
+
+
+
+## Distance model: MCMC algorithm
+
+
+
+## Class model: MCMC algorithm
+
+
+
+## Eigen model: MCMC algorithm
+
+
+
 ## Lazega data analysis
+
