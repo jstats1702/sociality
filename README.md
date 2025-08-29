@@ -16,9 +16,9 @@ This repository contains all the necessary code to reproduce the results present
 
 ### Prior simulation for the sociality model
 
-- File: prior simulation.R
+- File: `prior simulation.R`
 
-- Required libraries: ggplot2, dplyr
+- Required libraries: `ggplot2`, `dplyr`
 
 ## Sociality model: MCMC algorithm
 
