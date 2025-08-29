@@ -60,6 +60,8 @@ File: `Lazega_sociality_mcmc.R`
 
 Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
 
+Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
+
 Content:
 
 - Settings
