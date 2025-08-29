@@ -152,7 +152,7 @@ Files: `model_comparison_class`, `model_comparison_distance`, `model_comparison_
 
 ## Section 5.3: Simulation
 
-File: `Lazega_eigen_cv.R`
+File: `simulation.R`
 
 Required libraries: `igraph`, `sand`, `doParallel`, `foreach`
 
