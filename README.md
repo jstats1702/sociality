@@ -62,6 +62,14 @@ Required libraries: `igraph`, `sand`
 
 Depends on: `WAIC.R`, `r_functions.R`
 
+#### Sociality model: Predictive accuracy (CV)
+
+File: `Lazega_sociality_cv.R`
+
+Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`
+
+Depends on: `MCMC.R`, `r_functions.R`
+
 #### Class model: Model fitting, posterior predictive checks
 
 File: `Lazega_class.R`
