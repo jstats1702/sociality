@@ -56,7 +56,7 @@ Content:
 
 ## Section 5.1: Collaborative working relationships
 
-File: `Lazega_sociality_mcmc.R`
+File: `Lazega_sociality_mcmc_vi.R`
 
 Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `corrplot`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
 
@@ -109,9 +109,9 @@ Content:
 
 File: `Lazega_sociality_mcmc_waic`
 
-Required libraries:
+Required libraries: `igraph`, `sand`
 
-Depends on:
+Depends on: `WAIC.R`, `r_functions.R`
 
 Content:
 
