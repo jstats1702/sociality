@@ -141,3 +141,9 @@ File: `Lazega_eigen_cv.R`
 Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
 
 Depends on: `eigen_functions.cpp`, `r_functions.R`, `eigen_functions.R`
+
+#### Cross-validation comparison
+
+File: `Lazega_cv_comparison.R`
+
+Required libraries: `ROCR`
