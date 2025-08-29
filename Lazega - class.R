@@ -2,7 +2,8 @@
 rm(list = ls(all.names = TRUE))
 
 # Set working directory
-setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+# setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+setwd("~/Dropbox/PAPERS/projects/sociality")
 
 # Load required libraries and source files
 library(Rcpp)
@@ -59,7 +60,7 @@ B <- nrow(samples$Xi_chain)  # Get number of samples
 n_test_stats <- 6
 test_stats_class <- matrix(NA, B, n_test_stats)  # Preallocate matrix
 
-# set.seed(42)
+set.seed(42)
 for (b in seq_len(B)) {
      # Extract parameters
      Lambda <- samples$Lambda_chain[b,]
@@ -91,3 +92,28 @@ for (b in seq_len(B)) {
 save(test_stats_class, file = "test_statistics_class_lazega.RData")
 
 load("test_statistics_class_lazega.RData")
+
+# degree predictive check ------------------------------------------------------
+B <- nrow(samples$Xi_chain)  # Get number of samples
+test_degree_class <- matrix(NA, B, I)  # Preallocate matrix
+
+set.seed(42)
+for (b in seq_len(B)) {
+     # Extract parameters
+     Lambda <- samples$Lambda_chain[b,]
+     Xi     <- samples$Xi_chain[b,]
+     
+     # Simulate adjacency matrix and convert to graph
+     A <- simulate_data(I, K, Lambda, Xi)
+     g <- igraph::graph_from_adjacency_matrix(A, mode = "undirected")
+     
+     # Compute statistics efficiently
+     test_degree_class[b, ] <- igraph::degree(g)
+     
+     # Display progress every 10%
+     if (b %% ceiling(0.1 * B) == 0 || b == B) {
+          cat("Simulation progress:", round(100 * b / B, 1), "% completed\n")
+     }
+}
+
+save(test_degree_class, file = "test_degree_class_lazega.RData")

@@ -2,7 +2,8 @@
 rm(list = ls(all.names = TRUE))
 
 # Set working directory
-setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+# setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+setwd("~/Dropbox/PAPERS/projects/sociality")
 
 # Load required libraries and source files
 library(Rcpp)
@@ -92,3 +93,30 @@ for (b in seq_len(B)) {
 save(test_stats_eigen, file = "test_statistics_eigen_lazega.RData")
 
 load("test_statistics_eigen_lazega.RData")
+
+# degree predictive check ------------------------------------------------------
+
+B <- nrow(samples$U_chain)  # Get number of samples
+test_degree_eigen <- matrix(NA, B, I)  # Preallocate matrix
+
+# set.seed(42)
+for (b in seq_len(B)) {
+     # Extract parameters
+     zeta   <- samples$zeta_chain[b]
+     U      <- matrix(samples$U_chain[b,], I, K)
+     Lambda <- samples$Lambda[b,]
+     
+     # Simulate adjacency matrix and convert to graph
+     A <- simulate_data(I, zeta, U, Lambda)
+     g <- igraph::graph_from_adjacency_matrix(A, mode = "undirected")
+     
+     # Compute statistics efficiently
+     test_degree_eigen[b, ] <- igraph::degree(g)
+     
+     # Display progress every 10%
+     if (b %% ceiling(0.1 * B) == 0 || b == B) {
+          cat("Simulation progress:", round(100 * b / B, 1), "% completed\n")
+     }
+}
+
+save(test_degree_eigen, file = "test_degree_eigen_lazega.RData")

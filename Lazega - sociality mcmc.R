@@ -1,7 +1,8 @@
 # Lazega
 
 # settings ---------------------------------------------------------------------
-setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+# setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+setwd("~/Dropbox/PAPERS/projects/sociality")
 
 rm(list = ls())
 
@@ -34,6 +35,8 @@ obs_test_statistics <- c(
      mean(degree(g)),
      sd(degree(g))
 )
+
+obs_degree <- degree(g)
 
 ## adjacency matrix visualization
 pdf(file = "fig_lazega_adjacency.pdf", pointsize = 15)
@@ -109,6 +112,29 @@ dev.off()
 
 # 
 
+# Cluster memberships
+clusters <- membership(communities)
+
+## Reorder the matrices based on the reordered clusters
+y_reordered <- reorder_matrix(y, clusters)
+
+diag(y_reordered) <- 0
+
+rownames(y_reordered) <- (1:n)[order(clusters)]
+colnames(y_reordered) <- (1:n)[order(clusters)]
+
+## adjacency matrix visualization (ordered)
+pdf(file = "fig_lazega_adjacency_ordered.pdf", pointsize = 15)
+corrplot::corrplot(corr = y_reordered, 
+                   col.lim = c(0,1), 
+                   method = "color", 
+                   tl.col = "black", 
+                   addgrid.col = "white", 
+                   cl.pos = "n", 
+                   col = colorRampPalette(c("red4", "white", "black"))(200))
+rect(xleft = 0.5, ybottom = 0.5, xright = n + 0.5, ytop = n + 0.5, border = "black", lwd = 1)
+dev.off()
+
 # model fitting using MCMC -----------------------------------------------------
 
 # hyperparameters
@@ -121,11 +147,11 @@ n_iter <- 250000 + 10000
 n_burn <- 10000
 n_thin <- 10
 
-# start.time <- Sys.time()
-# set.seed(123)
-# samples <- gibbs_sampler(y, n_iter, n_burn, n_thin, a_sigma, b_sigma, a_tau, b_tau)
-# end.time <- Sys.time()
-# save(samples, start.time, end.time, file = "samples_sociality_lazega.RData")
+start.time <- Sys.time()
+set.seed(123)
+samples <- gibbs_sampler(y, n_iter, n_burn, n_thin, a_sigma, b_sigma, a_tau, b_tau)
+end.time <- Sys.time()
+save(samples, start.time, end.time, file = "samples_sociality_lazega.RData")
 
 load("samples_sociality_lazega.RData")
 end.time - start.time
@@ -753,6 +779,66 @@ plot(g,
      main = "")  # No title
 dev.off()
 
+# interaction probabilities ----------------------------------------------------
+
+# Number of posterior draws and number of nodes
+B <- nrow(samples$delta)
+n <- ncol(samples$delta)
+
+# Initialize interaction probabilities matrix
+Theta <- matrix(0, nrow = n, ncol = n)
+
+# Loop over posterior draws
+for (b in seq_len(B)) {
+     
+     # Extract current draw
+     mu    <- samples$mu[b]
+     delta <- samples$delta[b, ]
+     
+     # Fill only the upper triangle (i < j) to avoid double work
+     for (i in 1:(n - 1)) {
+          for (j in (i + 1):n) {
+               Theta[i, j] <- Theta[i, j] + pnorm(mu + delta[i] + delta[j])
+          }
+     }
+}
+
+# Average over posterior draws
+Theta <- Theta / B
+
+# Reflect to make the matrix symmetric (since we only filled i < j)
+Theta <- Theta + t(Theta)
+
+# No self-ties: set diagonal to NA (use 0 instead if preferred)
+diag(Theta) <- 0
+
+# 
+
+# Cluster memberships
+clusters <- membership(communities)
+
+## Reorder the matrices based on the reordered clusters
+Theta_reordered <- reorder_matrix(Theta, clusters)
+
+diag(Theta_reordered) <- 0
+
+rownames(Theta_reordered) <- (1:n)[order(clusters)]
+colnames(Theta_reordered) <- (1:n)[order(clusters)]
+
+## Visualization of coclustering probabilities (ordered)
+pdf(file = "fig_lazega_interaction_probabilities_ordered.pdf", pointsize = 15)
+corrplot::corrplot(corr = Theta_reordered,
+                   col.lim = c(0, 1), 
+                   method = "color", 
+                   tl.col = "black", 
+                   addgrid.col = "white", 
+                   cl.pos = "n", 
+                   col = colorRampPalette(c("red", "white", "red"))(200))
+
+## Add border around the matrix
+rect(xleft = 0.5, ybottom = 0.5, xright = n + 0.5, ytop = n + 0.5, border = "black", lwd = 1)
+dev.off()
+
 # test statistics --------------------------------------------------------------
 
 # T_1 : density
@@ -762,47 +848,47 @@ dev.off()
 # T_5 : mean degree
 # T_6 : sd degree 
 
-# ## settings
-# B <- nrow(samples$delta)  # Get number of samples
-# n_test_stats <- 6
-# test_stats_sociality <- matrix(NA, B, n_test_stats)  # Preallocate matrix
-# 
-# set.seed(42)
-# for (b in seq_len(B)) {
-#      # Extract parameters
-#      mu <- samples$mu[b]
-#      delta <- samples$delta[b, ]
-# 
-#      # Simulate adjacency matrix and convert to graph
-#      A <- matrix(0, n, n)
-#      for (i in 1:(n - 1)) {
-#           for (j in (i + 1):n) {
-#                A[i, j] <- rbinom(1, size = 1, prob = pnorm(mu + delta[i] + delta[j]))
-#                A[j, i] <- A[i, j]
-#           }
-#      }
-#      g <- graph_from_adjacency_matrix(A, mode = "undirected")
-# 
-#      # Compute node degrees once
-#      degrees <- igraph::degree(g)
-# 
-#      # Compute statistics efficiently
-#      test_stats_sociality[b, ] <- c(
-#           igraph::edge_density(g),
-#           igraph::transitivity(g, type = "global"),
-#           igraph::assortativity_degree(g),
-#           igraph::mean_distance(g),
-#           mean(degrees),
-#           sd(degrees)
-#      )
-# 
-#      # Display progress every 10%
-#      if (b %% ceiling(0.1 * B) == 0 || b == B) {
-#           cat("Simulation progress:", round(100 * b / B, 1), "% completed\n")
-#      }
-# }
-# 
-# save(test_stats_sociality, obs_test_statistics, file = "test_statistics_sociality_lazega.RData")
+## settings
+B <- nrow(samples$delta)  # Get number of samples
+n_test_stats <- 6
+test_stats_sociality <- matrix(NA, B, n_test_stats)  # Preallocate matrix
+
+set.seed(42)
+for (b in seq_len(B)) {
+     # Extract parameters
+     mu <- samples$mu[b]
+     delta <- samples$delta[b, ]
+
+     # Simulate adjacency matrix and convert to graph
+     A <- matrix(0, n, n)
+     for (i in 1:(n - 1)) {
+          for (j in (i + 1):n) {
+               A[i, j] <- rbinom(1, size = 1, prob = pnorm(mu + delta[i] + delta[j]))
+               A[j, i] <- A[i, j]
+          }
+     }
+     g <- graph_from_adjacency_matrix(A, mode = "undirected")
+
+     # Compute node degrees once
+     degrees <- igraph::degree(g)
+
+     # Compute statistics efficiently
+     test_stats_sociality[b, ] <- c(
+          igraph::edge_density(g),
+          igraph::transitivity(g, type = "global"),
+          igraph::assortativity_degree(g),
+          igraph::mean_distance(g),
+          mean(degrees),
+          sd(degrees)
+     )
+
+     # Display progress every 10%
+     if (b %% ceiling(0.1 * B) == 0 || b == B) {
+          cat("Simulation progress:", round(100 * b / B, 1), "% completed\n")
+     }
+}
+
+save(test_stats_sociality, obs_test_statistics, file = "test_statistics_sociality_lazega.RData")
 
 # load tests statistics data
 load("test_statistics_sociality_lazega.RData")
@@ -847,3 +933,88 @@ par(mar = c(2.75,2.75,0.5,0.5), mgp = c(1.7,0.7,0))
 test_statistic_viz(6, "SD degree", obs_test_statistics, test_stats_sociality, 
                    test_stats_distance, test_stats_class, test_stats_eigen)
 dev.off()
+
+# degree predictive check ------------------------------------------------------
+
+## settings
+B <- nrow(samples$delta)  # Get number of samples
+test_degree_sociality <- matrix(NA, B, n)  # Preallocate matrix
+
+set.seed(42)
+for (b in seq_len(B)) {
+     # Extract parameters
+     mu <- samples$mu[b]
+     delta <- samples$delta[b, ]
+     
+     # Simulate adjacency matrix and convert to graph
+     A <- matrix(0, n, n)
+     for (i in 1:(n - 1)) {
+          for (j in (i + 1):n) {
+               A[i, j] <- rbinom(1, size = 1, prob = pnorm(mu + delta[i] + delta[j]))
+               A[j, i] <- A[i, j]
+          }
+     }
+     g <- graph_from_adjacency_matrix(A, mode = "undirected")
+     
+     # Compute statistics efficiently
+     test_degree_sociality[b, ] <- igraph::degree(g)
+     
+     # Display progress every 10%
+     if (b %% ceiling(0.1 * B) == 0 || b == B) {
+          cat("Simulation progress:", round(100 * b / B, 1), "% completed\n")
+     }
+}
+
+save(test_degree_sociality, obs_degree, file = "test_degree_sociality_lazega.RData")
+
+## 
+
+model <- c("sociality", "distance", "class", "eigen")
+
+ord <- order(obs_degree, decreasing = F)
+obs_ord <- obs_degree[ord]
+
+## x positions and labels (original node indices)
+x <- seq_len(n)
+x_labels <- ord
+
+## Plot
+pdf(file = "fig_lazega_degree_statistics.pdf", pointsize = 14)
+par(mar = c(2.75,2.75,0.5,0.5), mgp = c(1.7,0.7,0))
+plot(x, mean_ord, type = "n",
+     xlab = "Node",
+     ylab = "Degree",
+     ylim = c(0, 20),
+     xaxt = "n")  # custom x-axis below
+
+axis(side = 1, at = x, labels = ord, cex.axis = 0.9, las = 2)
+
+for (j in 1:4) {
+
+     load(paste0("test_degree_", model[j], "_lazega.RData"))
+     
+     test_degree <- get(paste0("test_degree_", model[j]))
+     
+     ## Posterior predictive summaries for degrees by node
+     post_mean <- colMeans(test_degree, na.rm = TRUE)
+     ci95_lo <- apply(X = test_degree, MARGIN = 2, FUN = quantile, prob = 0.025)
+     ci95_hi <- apply(X = test_degree, MARGIN = 2, FUN = quantile, prob = 0.975)
+     
+     ## Reorder all per-node vectors
+     mean_ord    <- post_mean [ord]
+     ci95_lo_ord <- ci95_lo   [ord]
+     ci95_hi_ord <- ci95_hi   [ord]
+     
+     ## posterior mean and 95% CI
+     lines(x, ci95_lo_ord, type = "l", col = adjustcolor(j, 0.5))
+     lines(x, ci95_hi_ord, type = "l", col = adjustcolor(j, 0.5))
+     lines(x, mean_ord, type = "l", col = adjustcolor(j, 0.5))
+}
+
+lines(x, obs_ord, type = "l", col = "gray", lwd = 8)
+
+legend("topleft", legend = model, fill = 1:4, border = 1:4, bty = "n")
+
+dev.off()
+
+
