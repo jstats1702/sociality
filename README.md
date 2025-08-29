@@ -85,6 +85,8 @@ Content:
 - Test statistics visualization
 - Degree predictive check
 
+#### Sensitivity analysis
+
 File: `Lazega_sociality_mcmc_sensitivity.R`
 
 Required libraries: `truncnorm`,`igraph`, `corrplot`
@@ -102,4 +104,14 @@ Content:
 - Modeling fitting using prior 5
 - Modeling fitting using prior 6
 - Comparison
+
+#### Model fit
+
+File: `Lazega_sociality_mcmc_waic`
+
+Required libraries:
+
+Depends on:
+
+Content:
 
