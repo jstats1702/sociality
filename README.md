@@ -38,7 +38,7 @@ Required libraries: `truncnorm`
 
 ## Section 5.1: Collaborative working relationships
 
-#### Exploratory data analysis, model fitting, inference, posterior predictive checks
+#### Sociality model: Exploratory data analysis, model fitting, inference, posterior predictive checks
 
 File: `Lazega_sociality_mcmc_vi.R`
 
@@ -46,7 +46,7 @@ Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `corrplo
 
 Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
 
-#### Sensitivity analysis: Sociality model
+#### Sociality model: Sensitivity analysis
 
 File: `Lazega_sociality_mcmc_sensitivity.R`
 
@@ -54,7 +54,7 @@ Required libraries: `truncnorm`,`igraph`, `corrplot`
 
 Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
 
-#### Model fit: Sociality model
+#### Sociality model: Model fit (WAIC)
 
 File: `Lazega_sociality_waic.R`
 
@@ -62,7 +62,7 @@ Required libraries: `igraph`, `sand`
 
 Depends on: `WAIC.R`, `r_functions.R`
 
-#### Class model
+#### Class model: Model fitting, posterior predictive checks
 
 File: `Lazega_class.R`
 
@@ -70,4 +70,11 @@ Required libraries: `Rcpp`, `igraph`, `sand`
 
 Depends on: `class_functions.cpp`, `r_functions.R`, `class_functions.R`
 
+#### Class model: Model fit (WAIC)
+
+File: `Lazega_class_waic.R`
+
+Required libraries: `Rcpp`, `igraph`, `sand`
+
+Depends on: `class_functions.cpp`, `r_functions.R`, `class_functions.R`
 
