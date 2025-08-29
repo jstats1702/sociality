@@ -14,7 +14,7 @@ This repository contains all the necessary code to reproduce the results present
 
 ## Section 3.2: Prior elicitation
 
-### Prior simulation for the sociality model
+#### Prior simulation for the sociality model
 
 - File: `prior simulation.R`
 
