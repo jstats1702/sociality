@@ -1,4 +1,6 @@
-Necessary code to reproduce all results from **Bayesian Sociality Models: A Scalable and Flexible Alternative for Network Analysis**.
+# Bayesian Sociality Models: A Scalable and Flexible Alternative for Network Analysis
+
+This repository contains all the necessary code to reproduce the results presented in the paper *Bayesian Sociality Models: A Scalable and Flexible Alternative for Network Analysis*.
 
 # Implementation notes
 
@@ -7,3 +9,7 @@ Necessary code to reproduce all results from **Bayesian Sociality Models: A Scal
 - The user should expect some variation in computation time, particularly when running on different hardware configurations.
 
 - To ensure the software runs properly, the user should place all files in a single folder and update the file path specified at the beginning of each script.
+
+- The user must have the following libraries installed in the global environment to avoid any potential runtime conflicts: Rcpp, RcppArmadillo, igraph, sand, coda, ggplot2, reshape2, gridExtra, cluster, mclust.
+
+# Lazega data analysis
