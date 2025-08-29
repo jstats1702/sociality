@@ -16,15 +16,45 @@ This repository contains all the necessary code to reproduce the results present
 
 #### Prior simulation for the sociality model
 
-- File: `prior simulation.R`
+File: `prior simulation.R`
 
-- Required libraries: `ggplot2`, `dplyr`
+Required libraries: `ggplot2`, `dplyr`
 
-## Sociality model: MCMC algorithm
+Content:
+
+- Settings  
+- Sociality model: Prior simulation 1
+- Sociality model: Prior simulation 2
+
+## Section 4.1: Markov chain Monte Carlo
+
+#### Sociality model: MCMC algorithm
+
+File: `MCMC.R`
+
+Required libraries: `truncnorm`
+
+Content: 
+
+- Full conditional distributions: MCMC sociality model
+- MCMC: Sociality model for data analysis
+- MCMC: Sociality model for cross-validation experiments
+
+## Section 4.2: Variational inference
+
+#### Sociality model: VI algorithm
+
+File: `VI.R`
+
+Required libraries: `truncnorm`
+
+Content:
+
+- Function to initialize variational parameters
+- Function to compute the ELBO
+- VI algorithm
 
 
-
-## Sociality model: VI algorithm
 
 
 
