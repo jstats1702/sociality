@@ -142,8 +142,14 @@ Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
 
 Depends on: `eigen_functions.cpp`, `r_functions.R`, `eigen_functions.R`
 
-#### Cross-validation comparison
+## Section 5.2: Model comparison using other datasets
 
-File: `Lazega_cv_comparison.R`
+Files: `model_comparison_class`, `model_comparison_distance`, `model_comparison_eigen`, `model_comparison_sociality`, `model_comparison_results.R`
 
-Required libraries: `ROCR`
+## Section 5.3: Simulation
+
+File: `Lazega_eigen_cv.R`
+
+Required libraries: `igraph`, `sand`, `doParallel`, `foreach`
+
+Depends on: `MCMC.R`, `VI.R`, `helper functions.R`, `r_functions.R`
