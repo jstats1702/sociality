@@ -1,23 +1,28 @@
-# Simulation
+# Bayesian Sociality Models: A Scalable and Flexible Alternative for Network Analysis
+#
+# Section 5.3
 
-# settings ---------------------------------------------------------------------
+# Settings ---------------------------------------------------------------------
 
-setwd("C:/Users/Juan Camilo/Dropbox/PAPERS/projects/sociality")
-# setwd("C:/Users/User/Dropbox/PAPERS/projects/sociality")
+## Working directory
+setwd("~/Dropbox/PAPERS/projects/sociality")
 
+## Clean global environment
 rm(list = ls())
 
+## Required libraries
 library(igraph)
 library(sand)
 library(doParallel)
 library(foreach)
 
+## Load R functions
 source("MCMC.R")
 source("VI.R")
 source("helper functions.R")
 source("r_functions.R")
 
-# settings ---------------------------------------------------------------------
+# Simulation settings-----------------------------------------------------------
 
 # Number of simulations
 N <- 100
@@ -41,7 +46,7 @@ global_bound <- 3
 epsilon <- 1e-06
 max_iter <- 1000
 
-# simulation 1 -----------------------------------------------------------------
+# Simulation 1 -----------------------------------------------------------------
 
 n <- 25
 
@@ -97,7 +102,7 @@ stopCluster(cl)
 
 save(results, file = "simulation_sociality_1.RData")
 
-# simulation 2 -----------------------------------------------------------------
+# Simulation 2 -----------------------------------------------------------------
 
 n <- 50
 
@@ -153,7 +158,7 @@ stopCluster(cl)
 
 save(results, file = "simulation_sociality_2.RData")
 
-# simulation 3 -----------------------------------------------------------------
+# Simulation 3 -----------------------------------------------------------------
 
 n <- 100
 
@@ -209,7 +214,7 @@ stopCluster(cl)
 
 save(results, file = "simulation_sociality_3.RData")
 
-# simulation 4 -----------------------------------------------------------------
+# Simulation 4 -----------------------------------------------------------------
 
 n <- 200
 
@@ -265,7 +270,11 @@ stopCluster(cl)
 
 save(results, file = "simulation_sociality_4.RData")
 
-# results ----------------------------------------------------------------------
+# Results ----------------------------------------------------------------------
+
+#-------------#
+#   Table 4   #
+#-------------#
 
 out <- NULL
 
@@ -286,4 +295,4 @@ rownames(out) <- paste0("Scenario ", 1:4)
 colnames(out) <- c("Time MCMC", "Time VI", "RMSE MCMC", "RMSE VI")
 round(out, 3)
 
-
+# End --------------------------------------------------------------------------

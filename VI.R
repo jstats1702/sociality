@@ -1,6 +1,9 @@
-# Variational Inference (VI) algorithm for the sociality model
+# Bayesian Sociality Models: A Scalable and Flexible Alternative for Network Analysis
+#
+# Section 4.1
 
-# Function to initialize variational parameters
+# Function to initialize variational parameters --------------------------------
+
 initialize_variational_parameters <- function(n, a_sigma, b_sigma, a_tau, b_tau) {
      # Initial values
      tau2   <- jitter(rep(1, n))
@@ -23,7 +26,8 @@ initialize_variational_parameters <- function(n, a_sigma, b_sigma, a_tau, b_tau)
      )
 }
 
-# Function to compute the ELBO
+# Function to compute the ELBO -------------------------------------------------
+
 compute_elbo <- function(params, y, a_sigma, b_sigma, a_tau, b_tau) {
      # Sizes
      n <- nrow(y)
@@ -85,7 +89,8 @@ compute_elbo <- function(params, y, a_sigma, b_sigma, a_tau, b_tau) {
      return(P - Q)
 }
 
-# VI algorithm
+# VI algorithm -----------------------------------------------------------------
+
 vi_sociality <- function(y, a_sigma, b_sigma, a_tau, b_tau, global_bound, epsilon, max_iter) {
      # Sizes
      n <- nrow(y)
@@ -182,3 +187,4 @@ vi_sociality <- function(y, a_sigma, b_sigma, a_tau, b_tau, global_bound, epsilo
      
      return(params)
 }
+# End --------------------------------------------------------------------------
