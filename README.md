@@ -2,6 +2,8 @@
 
 This repository contains all the necessary code to reproduce the results presented in the paper *Bayesian Sociality Models: A Scalable and Flexible Alternative for Network Analysis*.
 
+If needed, these files are also available at [Dropbox link](https://www.dropbox.com/scl/fo/b9fjj7pjb4vxqevhrj0ng/AKpQFledPpw_rKmy1ad2LTo?rlkey=qv03j5wzlra973f86vdy06b4u&st=hcqqwgc6&dl=0), along with all posterior draws, cross-validation experiments, and simulation results, for users who prefer not to run the computations themselves.
+
 ## Implementation notes
 
 - The implementation is carried out in R software version 4.4.2, using RStudio version 2024.12.0 Build 467 as the IDE, and executed on a standard laptop equipped with an 11th Gen Intel(R) Core(TM) i7-1165G7 processor (2.80 GHz) and 8.00 GB of RAM.
