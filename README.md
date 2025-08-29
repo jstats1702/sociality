@@ -20,12 +20,6 @@ File: `prior simulation.R`
 
 Required libraries: `ggplot2`, `dplyr`
 
-Content:
-
-- Settings  
-- Sociality model: Prior simulation 1
-- Sociality model: Prior simulation 2
-
 ## Section 4.1: Markov chain Monte Carlo
 
 #### Sociality model: MCMC algorithm
@@ -33,12 +27,6 @@ Content:
 File: `MCMC.R`
 
 Required libraries: `truncnorm`
-
-Content: 
-
-- Full conditional distributions: MCMC sociality model
-- MCMC: Sociality model for data analysis
-- MCMC: Sociality model for cross-validation experiments
 
 ## Section 4.2: Variational inference
 
@@ -48,12 +36,6 @@ File: `VI.R`
 
 Required libraries: `truncnorm`
 
-Content:
-
-- Function to initialize variational parameters
-- Function to compute the ELBO
-- VI algorithm
-
 ## Section 5.1: Collaborative working relationships
 
 File: `Lazega_sociality_mcmc_vi.R`
@@ -61,29 +43,6 @@ File: `Lazega_sociality_mcmc_vi.R`
 Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `corrplot`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
 
 Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
-
-Content:
-
-- Settings
-- Data
-- Exploratory data analysis
-- Model fitting using MCMC
-- Convergence diagnostics
-- Model fitting using VI
-- Inference on $\mu$
-- Inference on $\sigma^2$
-- Inference on $\tau^2$
-- Inference on $\mu$, $\sigma^2$ and $\tau^2$
-- Inference on delta using MCMC
-- Inference on delta using VI
-- Clustering sociality effects using MCMC
-- Inference on sociality clusters using MCMC
-- Clustering sociality effects using VI
-- Inference on sociality clusters using VI
-- Interaction probabilities
-- Posterior predictive checks
-- Test statistics visualization
-- Degree predictive check
 
 #### Sensitivity analysis
 
@@ -93,18 +52,6 @@ Required libraries: `truncnorm`,`igraph`, `corrplot`
 
 Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
 
-Content:
-
-- Settings
-- Algorithm settings
-- Modeling fitting using prior 1
-- Modeling fitting using prior 2
-- Modeling fitting using prior 3
-- Modeling fitting using prior 4
-- Modeling fitting using prior 5
-- Modeling fitting using prior 6
-- Comparison
-
 #### Model fit
 
 File: `Lazega_sociality_mcmc_waic`
@@ -113,5 +60,4 @@ Required libraries: `igraph`, `sand`
 
 Depends on: `WAIC.R`, `r_functions.R`
 
-Content:
 
