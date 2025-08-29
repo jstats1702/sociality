@@ -34,3 +34,9 @@ This repository contains all the necessary code to reproduce the results present
 
 ## Lazega data analysis
 
+
+## Model comparison using other datasets
+
+
+## Simulation study
+
