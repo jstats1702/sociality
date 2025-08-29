@@ -58,7 +58,7 @@ Content:
 
 File: `Lazega_sociality_mcmc.R`
 
-Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
+Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `corrplot`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
 
 Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
 
@@ -84,4 +84,22 @@ Content:
 - Posterior predictive checks
 - Test statistics visualization
 - Degree predictive check
+
+File: `Lazega_sociality_mcmc_sensitivity.R`
+
+Required libraries: `truncnorm`,`igraph`, `corrplot`
+
+Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
+
+Content:
+
+- Settings
+- Algorithm settings
+- Modeling fitting using prior 1
+- Modeling fitting using prior 2
+- Modeling fitting using prior 3
+- Modeling fitting using prior 4
+- Modeling fitting using prior 5
+- Modeling fitting using prior 6
+- Comparison
 
