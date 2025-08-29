@@ -12,6 +12,8 @@ This repository contains all the necessary code to reproduce the results present
 
 - The user must have the following libraries installed in the global environment to avoid any potential runtime conflicts.
 
+- The data files required to run all illustrations follow the format `name_data.RData`. For example, the Lazega dataset is provided as `lazega_data.RData`.
+
 ## Section 3.2: Prior elicitation
 
 #### Prior simulation for the sociality model
