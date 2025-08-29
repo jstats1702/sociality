@@ -54,12 +54,16 @@ Required libraries: `truncnorm`,`igraph`, `corrplot`
 
 Depends on: `MCMC.R`, `VI.R`, `helper_functions.R`, `r_functions.R`
 
-#### Model fit
+#### Model fit: Sociality model
 
-File: `Lazega_sociality_mcmc_waic`
+File: `Lazega_sociality_mcmc_waic.R`
 
 Required libraries: `igraph`, `sand`
 
 Depends on: `WAIC.R`, `r_functions.R`
+
+#### 
+
+File
 
 
