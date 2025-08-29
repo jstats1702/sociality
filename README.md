@@ -38,6 +38,8 @@ Required libraries: `truncnorm`
 
 ## Section 5.1: Collaborative working relationships
 
+#### Exploratory data analysis, model fitting, inference, posterior predictive chekcs
+
 File: `Lazega_sociality_mcmc_vi.R`
 
 Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `corrplot`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
