@@ -142,6 +142,10 @@ Required libraries: `igraph`, `sand`, `doParallel`, `ROCR`, `Rcpp`
 
 Depends on: `eigen_functions.cpp`, `r_functions.R`, `eigen_functions.R`
 
+#### Predictive accuracy comparison
+
+File: `Lazega_cv_comparison.R`
+
 ## Section 5.2: Model comparison using other datasets
 
 Files: `model_comparison_class`, `model_comparison_distance`, `model_comparison_eigen`, `model_comparison_sociality`, `model_comparison_results.R`
