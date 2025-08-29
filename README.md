@@ -54,7 +54,34 @@ Content:
 - Function to compute the ELBO
 - VI algorithm
 
+## Section 5.1: Collaborative working relationships
 
+File: `Lazega_sociality_mcmc.R`
+
+Required libraries: `truncnorm`, `truncnorm`, `igraph`, `sand`, `coda`, `ggplot2`, `reshape2`, `gridExtra`, `cluster`, `mclust`, `truncnorm`
+
+Content:
+
+- Settings
+- Data
+- Exploratory data analysis
+- Model fitting using MCMC
+- Convergence diagnostics
+- Model fitting using VI
+- Inference on mu
+- Inference on sigma^2
+- Inference on tau^2
+- Inference on mu, sigma^2 and tau^2
+- Inference on delta using MCMC
+- Inference on delta using VI
+- Clustering sociality effects using MCMC
+- Inference on sociality clusters using MCMC
+- Clustering sociality effects using VI
+- Inference on sociality clusters using VI
+- Interaction probabilities
+- Posterior predictive checks
+- Test statistics visualization
+- Degree predictive check
 
 
 
